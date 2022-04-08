@@ -1,4 +1,4 @@
-<h1> You lucky number is {{ number }}</h1>
+<h1> You lucky number is {{ usersList.name.first_name }}</h1>
 <script>
     const route = "{{ path("blog_show",{slug: 'test-blog'}) | escape("js")}}"
     console.log(route);

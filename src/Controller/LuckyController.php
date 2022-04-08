@@ -16,7 +16,9 @@ class LuckyController extends AbstractController
         $randomNumber = random_int(0, 100);
 
         return $this->render("lucky/number.html.twig",[
-            'number' => $randomNumber
+            'number' => $randomNumber,
+//            'usersList' => ["name" => "DUMMY" , "age" => 12]
+            'usersList' => ["name" => ["first_name" => "TEST"] , "age" => 12]
         ]);
     }
 
