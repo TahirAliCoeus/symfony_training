@@ -19,4 +19,5 @@ class LuckyController extends AbstractController
             'number' => $randomNumber
         ]);
     }
+
 }
