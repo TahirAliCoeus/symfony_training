@@ -15,11 +15,18 @@ class LuckyController extends AbstractController
     {
         $randomNumber = random_int(0, 100);
 
-        return $this->render("lucky/number.html.twig",[
+/*        return $this->render("lucky/number.html.twig",[
             'number' => $randomNumber,
 //            'usersList' => ["name" => "DUMMY" , "age" => 12]
             'usersList' => ["name" => ["first_name" => "TEST"] , "age" => 12]
+        ]);*/
+
+        $contents = $this->renderView("lucky/number.html.twig",[
+            "number" => $randomNumber,
+            "usersList" => ["name" => ["first_name" => "TEST"] , "age" => 12]
         ]);
+
+        return new Response($contents);
     }
 
 }

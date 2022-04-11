@@ -15,14 +15,16 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class BlogController extends AbstractController
 {
-
+    /**
+     * @Route ("/show/{page}",requirements={"page"="\d+"})
+     */
     public function list(int $page) : Response
     {
         return  new Response($page);
     }
 
     /**
-     * @Route ("/show/{slug}",methods={"GET"},name="show")
+
     */
     public function show(string $slug) : Response
     {
