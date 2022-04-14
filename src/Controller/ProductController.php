@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Repository\ProductRepository;
+use App\Service\MessageGenerator;
 use Doctrine\Persistence\ManagerRegistry;
+use Psr\Log\LoggerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\MakerBundle\Validator;
@@ -91,5 +93,17 @@ class ProductController extends AbstractController
         $products = $entityManager->getRepository(Product::class)->findAllNameLike($name);
         dd($products);
     }
+
+
+    /**
+     * @Route("product/display/message")
+     */
+    public function displayMessage(MessageGenerator $messageGenerator): Response
+    {
+        $message = $messageGenerator->getHappyMessage();
+        return  new Response($message);
+    }
+
+
 
 }

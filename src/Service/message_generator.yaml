@@ -1,0 +1,10 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Service\MessageGenerator:
+    class: App\Service\MessageGenerator
+    autowire: false
+    arguments:
+      - "test@admin.com"

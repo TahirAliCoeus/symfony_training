@@ -140,6 +140,14 @@ class BlogController extends AbstractController
         return new Response("Updated blog title is {$updatedBlog['title']}");
     }
 
+    /**
+     * @Route("/test",name="test")
+     */
+    public function getValueFromEnv()
+    {
+        return new Response($this->getParameter("app.google_api_key"));
+    }
+
 
 
 
