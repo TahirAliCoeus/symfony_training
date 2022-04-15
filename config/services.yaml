@@ -28,6 +28,11 @@ services:
     # please note that last definitions always *replace* previous ones
 #imports:
 #    - { resource: ../src/Service/message_generator.yaml }
+    App\EventListener\UserSignupListener:
+        tags:
+            - { name: kernel.event_listener, event: 'user.created' }
+            - { name: kernel.event_listener, event: 'user.deleted', method: 'onTest' }
+
     App\Service\MessageGenerator:
         class: App\Service\MessageGenerator
         autowire: false
