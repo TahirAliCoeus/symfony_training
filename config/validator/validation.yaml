@@ -1,0 +1,7 @@
+App\Entity\User:
+  properties:
+    name:
+      - NotBlank: {message: "Name can not be empty"}
+      - App\Validator\ContainsAlphanumeric: ~
+    email:
+      - Email: {message: "Please enter a valid email"}

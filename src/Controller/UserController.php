@@ -14,6 +14,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class UserController extends AbstractController
 {
@@ -27,14 +28,20 @@ class UserController extends AbstractController
     /**
     * @Route ("user/add",name="user_add")
      */
-    public function store(ManagerRegistry $managerRegistry,EventDispatcherInterface $dispatcher)
+    public function store(ManagerRegistry $managerRegistry,EventDispatcherInterface $dispatcher,ValidatorInterface $validator)
     {
         $user = new User();
-        $user->setName("John Doe");
+        $user->setName("@@@");
         $user->setAddress("Lahore");
         $user->setEmail("test".uniqid()."@email.com");
         $user->setPassword("test".uniqid()."@email.com");
 
+        $errors = $validator->validate($user);
+        if(count($errors))
+        {
+            dd($errors);
+        }
+        dd("Nothing found");
         $entityManager = $managerRegistry->getManager();
 
         $entityManager->persist($user);
