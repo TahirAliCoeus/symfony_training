@@ -2,9 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
+#[ApiResource(collectionOperations: ['get','post'],
+    denormalizationContext: ["groups" => ["products:write"]],
+    normalizationContext: ['groups' => ["products:read"]]
+)]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -14,12 +20,15 @@ class Product
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(['products:read',"products:write","categories:read","categories:write"])]
     private $name;
 
     #[ORM\Column(type: 'float')]
+    #[Groups(['products:read',"products:write","categories:read","categories:write"])]
     private $price;
 
     #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups(['products:read',"products:write","categories:read","categories:write"])]
     private $description;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'products')]
